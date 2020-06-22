@@ -1,0 +1,109 @@
+var tile = document.getElementsByClassName('tile');
+var tile_wrapper = document.getElementById('tile_wrapper');
+var number_of_tile_types;
+var tiles = {
+	persentage: [],
+	name: [],
+	pattern: [],
+	pattern_name: [],
+};
+var gcdl = [];
+
+function tile_number_change() {
+	var number_input = Number(document.getElementById('number_input').value);
+	number_of_tile_types = number_input;
+	var tile_input = document.getElementById('tile_input');
+	tile_input.innerHTML = '';
+	tile_wrapper.innerHTML = '';
+	for( i = 0 ; i < number_of_tile_types ; i++) {
+		tile_input.innerHTML += '<div class="input" ><input placeholder="name" class="tile_name" ><input class="tile_input"  placeholder="percentage" ></div>';
+		tile_wrapper.innerHTML += '<div class="tile" ><p></p></div>';
+	}
+}
+
+function tile_mix() {
+	gcd = [];
+	tiles.pattern = [];
+	tiles.pattern_name = [];
+	var total_persentage = 0;
+	for( i = 0 ; i < tiles.persentage.length ; i++ ) {
+		total_persentage += tiles.persentage[i];
+	}
+	if( total_persentage != 100 ) { return alert("The persentage doesn't add up to 100") }
+	for( x = 0 ; x <= tiles.persentage.length ; x++ ) {
+		for( i = 0 ; i <= 100 ; i++ ) {
+			if( tiles.persentage[x] % i == 0 ) { 
+					gcdl.push(i);
+			}
+			
+		}
+	}
+	for( x = 0 ; x < tiles.persentage.length ; x++ ) {
+		for( i = 0 ; i < gcdl.length ; true ) {
+			if( tiles.persentage[x] % gcdl[i] != 0 ) { gcdl.splice( i , 1 ) }
+			else {i++}
+		}
+	}
+	for( i = 0 ; gcdl.length > 1 ; true ) {
+		if( gcdl[i] >= gcdl[i+1] ) { gcdl.splice( i+1, 1 ) }
+		else { gcdl.splice( i, 1 ) }
+	}
+	tiles.pattern = [];
+	for( i = 0 ; i < tiles.persentage.length ; i++ ) {
+		tiles.pattern.push(tiles.persentage[i]/gcdl[0]);
+	}
+	total_persentage = 0;
+	for( i = 0 ; i < tiles.pattern.length ; i++ ) {
+		total_persentage += tiles.pattern[i];
+	}
+		tile_wrapper.innerHTML = '';
+	for( i = 0 ; i < total_persentage ; i++) {
+		tile_wrapper.innerHTML += '<div class="tile" ><p></p></div>';
+	}
+	for( x = 0 ; x < tiles.pattern.length ; x++ ) {
+		for( y = 0 ; y < tiles.pattern[x] ; y++ ) {
+			tiles.pattern_name.push( tiles.name[x] );
+			console.log(x, y)
+		}
+	}
+	console.log(tiles.pattern_name)
+	shuffle( tiles.pattern_name )
+	console.log(tiles.pattern_name)
+	for( i = 0 ; i < tiles.pattern_name.length ; i++ ) {
+		console.log(i)
+		tile[i].childNodes[0].textContent = tiles.pattern_name[i];
+	}
+}
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+function data_collection() {
+	var input = document.getElementsByClassName('input');
+	tiles = {
+	persentage: [],
+	name: [],
+	pattern: [],
+	pattern_name: [],
+	}
+	for( i = 0 ; i < input.length ; i++ ) {
+		if( input[i].childNodes[1].value != '' ) { 
+			tiles.persentage.push(Number(input[i].childNodes[1].value));
+			tiles.name.push(input[i].childNodes[0].value);
+		}
+	}
+}
+
+document.addEventListener( 'keydown', function(ev) {
+	if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
+	else if( ev.key == 'Enter' && ev.target.parentNode.className == 'input' ) { data_collection() }
+	else if( ev.key == 'Enter' ) {tile_mix()}
+} )
