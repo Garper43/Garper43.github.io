@@ -107,3 +107,7 @@ document.addEventListener( 'keydown', function(ev) {
 	else if( ev.key == 'Enter' && ev.target.parentNode.className == 'input' ) { data_collection() }
 	else if( ev.key == 'Enter' ) {tile_mix()}
 } )
+
+document.addEventListener( 'click', function(ev) {
+	if( ev.target.parentNode.className != 'input' && ev.target.getAttribute('id') != 'number_input' ) {tile_mix()}
+})
