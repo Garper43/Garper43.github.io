@@ -6,6 +6,16 @@
 	<meta charset="utf-8">
 </head>
 <body>
+
+	<div id='color_picker' >
+		<div id='color_picker_preview' ></div>
+		<div id='sliders' >
+			<p><input class='rgb_slider' type="range" max='255' min='0' name="">red</p>
+			<p><input class='rgb_slider' type="range" max='255' min='0' name="">green</p>
+			<p><input class='rgb_slider' type="range" max='255' min='0' name="">blue</p>
+		</div>
+	</div>
+
 	<div id='tile_wrapper' >
 		<div tile='tile' ></div>
 	</div>
@@ -15,8 +25,7 @@
 		</div>
 	</div>
 
-
-
-	<script type="text/javascript" src='js.js' ></script>
+	<script type="text/javascript" src='mixer.js' ></script>
+	<script type="text/javascript" src='color_picker.js' ></script>
 </body>
 </html>
