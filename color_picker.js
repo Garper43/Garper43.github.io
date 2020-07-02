@@ -10,6 +10,7 @@ var slider = {
 }
 var drag = false;
 var rgb
+var active
 
 sliders.addEventListener( 'mousemove', function color(ev) {
 	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
@@ -43,13 +44,17 @@ function hide() {
 	pickerShow = false;
 }
 
-picker_button.addEventListener( 'click', function() {
-	if( pickerShow == false ) { show() }
-	else { hide() }
+picker_button.addEventListener( 'click', function() { //apply
+	hide()
+	active.setAttribute('name', preview.style.backgroundColor);
+	active.style.backgroundColor = preview.style.backgroundColor;
 } )
 
 document.addEventListener( 'click', function(ev) {
-	if( ev.target.className == 'preview' ) { show() }
+	if( ev.target.className == 'preview' ) { 
+		show();
+		active = ev.target;
+	 }
 } )
 
 /*preview.addEventListener( 'mousedown' , function(ev) {

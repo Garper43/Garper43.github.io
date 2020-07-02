@@ -6,6 +6,8 @@ var tiles = {
 	name: [],
 	pattern: [],
 	pattern_name: [],
+	color: [],
+	mix: [],
 };
 var gcdl = [];
 
@@ -25,6 +27,7 @@ function tile_mix() {
 	gcd = [];
 	tiles.pattern = [];
 	tiles.pattern_name = [];
+	tiles.mix = [];
 	var total_persentage = 0;
 	for( i = 0 ; i < tiles.persentage.length ; i++ ) {
 		total_persentage += tiles.persentage[i];
@@ -66,12 +69,15 @@ function tile_mix() {
 			console.log(x, y)
 		}
 	}
-	console.log(tiles.pattern_name)
-	shuffle( tiles.pattern_name )
-	console.log(tiles.pattern_name)
+	for( i = 0 ; i < tiles.pattern_name.length ; i++ ) {
+		tiles.mix.push( i );
+	}
+	shuffle( tiles.mix )
+
 	for( i = 0 ; i < tiles.pattern_name.length ; i++ ) {
 		console.log(i)
-		tile[i].childNodes[0].textContent = tiles.pattern_name[i];
+		tile[i].childNodes[0].textContent = tiles.pattern_name[tiles.mix[i]];
+		tile[i].style.boxShadow = 'inset -40px 0px 500px 0px '+tiles.color[tiles.mix[i]];
 	}
 }
 
@@ -93,15 +99,16 @@ function data_collection() {
 		name: [],
 		pattern: [],
 		pattern_name: [],
+		color: [],
+		mix: [],
 	}
 	for( i = 0 ; i < input.length ; i++ ) {
 		if( input[i].childNodes[2].value != '' ) { 
 			tiles.persentage.push(Number(input[i].childNodes[2].value));
 			tiles.name.push(input[i].childNodes[1].value);
-			console.log(1);
+			tiles.color.push(input[i].childNodes[0].style.backgroundColor);
 		}
 	}
-	console.log('data_collection');
 }
 
 document.addEventListener( 'keydown', function(ev) {
