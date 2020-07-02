@@ -15,7 +15,6 @@ var active
 function rgbset() {
 	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
 	preview.style.backgroundColor = rgb;
-	console.log(1);
 }
 
 sliders.addEventListener( 'mousemove', rgbset() )
@@ -23,7 +22,6 @@ sliders.addEventListener( 'mousemove', rgbset() )
 setInterval( function() {
 	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
 	preview.style.backgroundColor = rgb;
-	console.log(1);
 } , 100 );
 
 function find( e , a ) { 

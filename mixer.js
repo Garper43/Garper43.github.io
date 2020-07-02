@@ -8,6 +8,7 @@ var tiles = {
 	pattern_name: [],
 	color: [],
 	mix: [],
+	pattern_color: [],
 };
 var gcdl = [];
 
@@ -28,6 +29,7 @@ function tile_mix() {
 	tiles.pattern = [];
 	tiles.pattern_name = [];
 	tiles.mix = [];
+	tiles.pattern_color = [];
 	var total_persentage = 0;
 	for( i = 0 ; i < tiles.persentage.length ; i++ ) {
 		total_persentage += tiles.persentage[i];
@@ -66,7 +68,7 @@ function tile_mix() {
 	for( x = 0 ; x < tiles.pattern.length ; x++ ) {
 		for( y = 0 ; y < tiles.pattern[x] ; y++ ) {
 			tiles.pattern_name.push( tiles.name[x] );
-			console.log(x, y)
+			tiles.pattern_color.push( tiles.color[x] );
 		}
 	}
 	for( i = 0 ; i < tiles.pattern_name.length ; i++ ) {
@@ -75,9 +77,8 @@ function tile_mix() {
 	shuffle( tiles.mix )
 
 	for( i = 0 ; i < tiles.pattern_name.length ; i++ ) {
-		console.log(i)
 		tile[i].childNodes[0].textContent = tiles.pattern_name[tiles.mix[i]];
-		tile[i].style.boxShadow = 'inset -40px 0px 500px 0px '+tiles.color[tiles.mix[i]];
+		tile[i].style.boxShadow = 'inset -40px 0px 500px 0px '+tiles.pattern_color[tiles.mix[i]];
 	}
 }
 
@@ -101,6 +102,7 @@ function data_collection() {
 		pattern_name: [],
 		color: [],
 		mix: [],
+		pattern_color: [],
 	}
 	for( i = 0 ; i < input.length ; i++ ) {
 		if( input[i].childNodes[2].value != '' ) { 
