@@ -30,7 +30,7 @@ function tile_mix() {
 	for( i = 0 ; i < tiles.persentage.length ; i++ ) {
 		total_persentage += tiles.persentage[i];
 	}
-	if( total_persentage != 100 ) { return alert("The persentage doesn't add up to 100") }
+	//if( total_persentage != 100 ) { return alert("The persentage doesn't add up to 100") }
 	for( x = 0 ; x <= tiles.persentage.length ; x++ ) {
 		for( i = 0 ; i <= 100 ; i++ ) {
 			if( tiles.persentage[x] % i == 0 ) { 
