@@ -22,7 +22,6 @@ function tile_number_change() {
 }
 
 function tile_mix() {
-	data_collection();
 	gcd = [];
 	tiles.pattern = [];
 	tiles.pattern_name = [];
@@ -90,23 +89,25 @@ function shuffle(a) {
 function data_collection() {
 	var input = document.getElementsByClassName('input');
 	tiles = {
-	persentage: [],
-	name: [],
-	pattern: [],
-	pattern_name: [],
+		persentage: [],
+		name: [],
+		pattern: [],
+		pattern_name: [],
 	}
 	for( i = 0 ; i < input.length ; i++ ) {
-		if( input[i].childNodes[1].value != '' ) { 
-			tiles.persentage.push(Number(input[i].childNodes[1].value));
-			tiles.name.push(input[i].childNodes[0].value);
+		if( input[i].childNodes[2].value != '' ) { 
+			tiles.persentage.push(Number(input[i].childNodes[2].value));
+			tiles.name.push(input[i].childNodes[1].value);
+			console.log(1);
 		}
 	}
+	console.log('data_collection');
 }
 
 document.addEventListener( 'keydown', function(ev) {
-	if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
+	if( ev.key == 'Enter' && ev.target.parentNode.className == 'input' ) { data_collection() }
+	else if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
 	else if( ev.key == 'Enter' ) {tile_mix()}
-	else { data_collection() }
 } )
 
 document.addEventListener( 'touchend', function(ev) {
