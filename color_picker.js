@@ -15,11 +15,16 @@ var active
 function rgbset() {
 	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
 	preview.style.backgroundColor = rgb;
+	console.log(1);
 }
 
 sliders.addEventListener( 'mousemove', rgbset() )
 
-setInterval( rgbset() , 100 );
+setInterval( function() {
+	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
+	preview.style.backgroundColor = rgb;
+	console.log(1);
+} , 100 );
 
 function find( e , a ) { 
 	return Number(eval('e.style.' + a).slice( 0 , eval('e.style.' + a).indexOf('px') ));
