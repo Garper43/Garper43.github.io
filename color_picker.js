@@ -12,13 +12,14 @@ var drag = false;
 var rgb
 var active
 
-sliders.addEventListener( 'mousemove', function color(ev) {
+function rgbset() {
 	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
 	preview.style.backgroundColor = rgb;
-} )
+}
 
-	var rgb = 'rgb(' + slider.r.value + ',' + slider.g.value + ',' + slider.b.value + ')';
-	preview.style.backgroundColor = rgb;
+sliders.addEventListener( 'mousemove', rgbset() )
+
+setInterval( rgbset() , 100 );
 
 function find( e , a ) { 
 	return Number(eval('e.style.' + a).slice( 0 , eval('e.style.' + a).indexOf('px') ));
