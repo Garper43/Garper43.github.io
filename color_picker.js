@@ -52,6 +52,7 @@ picker_button.addEventListener( 'click', function() { //apply
 	hide()
 	active.setAttribute('name', preview.style.backgroundColor);
 	active.style.backgroundColor = preview.style.backgroundColor;
+	data_collection();
 } )
 
 document.addEventListener( 'click', function(ev) {
