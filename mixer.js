@@ -181,13 +181,3 @@ menu.slider.addEventListener( 'click' , function(ev) {
 	menu.menu.style.height = '100vh';
 	menu.button.textContent = 'GO';
 } )
-	} else {
-		tile_mix()
-	}
-} )
-
-menu.slider.addEventListener( 'click' , function(ev) {
-	menu.show = true;
-	menu.menu.style.height = '100vh';
-	menu.button.textContent = 'GO';
-} )
