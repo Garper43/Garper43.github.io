@@ -124,7 +124,7 @@ function data_collection() {
 document.addEventListener( 'keydown', function(ev) {
 	if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
 	else if( ev.key == 'Enter' ) {
-			console.log(1);
+			tile[current_tile].style.boxShadow = 'none';
 			current_tile++;	
 			tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 0px white';		
 	}
@@ -132,8 +132,9 @@ document.addEventListener( 'keydown', function(ev) {
 
 document.addEventListener( 'touchend', function(ev) {
 	if( ev.target.getAttribute('id') != 'number_input' && ev.target.parentNode.className != 'input') {
+		tile[current_tile].style.boxShadow = 'none';
 		current_tile++;
-		tile[current_tile].style.boxShadow = 'inset 0px 0px 20px 0px white';
+		tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 0px white';
 	}
 })
 
