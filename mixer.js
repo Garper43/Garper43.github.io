@@ -124,17 +124,17 @@ function data_collection() {
 document.addEventListener( 'keydown', function(ev) {
 	if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
 	else if( ev.key == 'Enter' ) {
-			tile[current_tile].style.boxShadow = 'none';
+			if( current_tile > -1 ) { tile[current_tile].style.boxShadow = 'none' }
 			current_tile++;	
-			tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 0px white';		
+			tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 5px white';		
 	}
 } )
 
 document.addEventListener( 'touchend', function(ev) {
 	if( ev.target.getAttribute('id') != 'number_input' && ev.target.parentNode.className != 'input') {
-		tile[current_tile].style.boxShadow = 'none';
+		if( current_tile > -1 ) { tile[current_tile].style.boxShadow = 'none' }
 		current_tile++;
-		tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 0px white';
+		tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 5px white';
 	}
 })
 
@@ -171,6 +171,16 @@ menu.button.addEventListener( 'click', function(ev) {
 		menu.show = false;
 		tile_wrapper.focus();
 		menu.button.textContent = 'RANDOMIZE';
+	} else {
+		tile_mix()
+	}
+} )
+
+menu.slider.addEventListener( 'click' , function(ev) {
+	menu.show = true;
+	menu.menu.style.height = '100vh';
+	menu.button.textContent = 'GO';
+} )
 	} else {
 		tile_mix()
 	}
