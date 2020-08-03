@@ -11,6 +11,14 @@ var tiles = {
 	pattern_color: [],
 };
 var gcdl = [];
+var menu = {
+	menu: document.getElementById( 'input_box_wrapper' ),
+	show: true,
+	drag: false,
+	button: document.getElementById( 'menu_button' ),
+	slider: document.getElementById( 'input_slider' ),
+}
+var current_tile = -1;
 
 function tile_number_change() {
 	var number_input = Number(document.getElementById('number_input').value);
@@ -25,6 +33,7 @@ function tile_number_change() {
 }
 
 function tile_mix() {
+	current_tile = -1;
 	gcd = [];
 	tiles.pattern = [];
 	tiles.pattern_name = [];
@@ -34,7 +43,6 @@ function tile_mix() {
 	for( i = 0 ; i < tiles.persentage.length ; i++ ) {
 		total_persentage += tiles.persentage[i];
 	}
-	//if( total_persentage != 100 ) { return alert("The persentage doesn't add up to 100") }
 	for( x = 0 ; x <= tiles.persentage.length ; x++ ) {
 		for( i = 0 ; i <= 100 ; i++ ) {
 			if( tiles.persentage[x] % i == 0 ) { 
@@ -78,7 +86,7 @@ function tile_mix() {
 
 	for( i = 0 ; i < tiles.pattern_name.length ; i++ ) {
 		tile[i].childNodes[0].textContent = tiles.pattern_name[tiles.mix[i]];
-		tile[i].style.boxShadow = 'inset -40px 0px 500px 0px '+tiles.pattern_color[tiles.mix[i]];
+		tile[i].style.backgroundColor = tiles.pattern_color[tiles.mix[i]];
 	}
 }
 
@@ -114,11 +122,61 @@ function data_collection() {
 }
 
 document.addEventListener( 'keydown', function(ev) {
-	if( ev.key == 'Enter' && ev.target.parentNode.className == 'input' ) { data_collection() }
-	else if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
-	else if( ev.key == 'Enter' ) {tile_mix()}
+	if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
+	else if( ev.key == 'Enter' ) {
+			console.log(1);
+			current_tile++;	
+			tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 0px white';		
+	}
 } )
 
 document.addEventListener( 'touchend', function(ev) {
-	if( ev.target.getAttribute('id') != 'number_input' && ev.target.parentNode.className != 'input') {tile_mix()}
+	if( ev.target.getAttribute('id') != 'number_input' && ev.target.parentNode.className != 'input') {
+		current_tile++;
+		tile[current_tile].style.boxShadow = 'inset 0px 0px 20px 0px white';
+	}
 })
+
+//mobile menu controlls
+
+menu.button.addEventListener( 'touchend', function(ev) {
+	if( menu.show ) {
+		menu.menu.style.transition = '.2s';
+		menu.menu.style.height = '20px';
+		data_collection()
+		tile_mix()
+		menu.show = false;
+		tile_wrapper.focus();
+		menu.button.textContent = 'RANDOMIZE';
+	} else {
+		tile_mix()
+	}
+} )
+
+menu.slider.addEventListener( 'touchend' , function(ev) {
+	menu.show = true;
+	menu.menu.style.height = '100vh';
+	menu.button.textContent = 'GO';
+} )
+
+//pc menu controlls
+
+menu.button.addEventListener( 'click', function(ev) {
+	if( menu.show ) {
+		menu.menu.style.transition = '.2s';
+		menu.menu.style.height = '20px';
+		data_collection()
+		tile_mix()
+		menu.show = false;
+		tile_wrapper.focus();
+		menu.button.textContent = 'RANDOMIZE';
+	} else {
+		tile_mix()
+	}
+} )
+
+menu.slider.addEventListener( 'click' , function(ev) {
+	menu.show = true;
+	menu.menu.style.height = '100vh';
+	menu.button.textContent = 'GO';
+} )
