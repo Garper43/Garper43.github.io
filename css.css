@@ -90,6 +90,7 @@ body, html {
 			z-index: 999999;
 			position: fixed;
 			bottom: 3vh;
+			transition: 0.2s;
 		}
 
 		#number_input {

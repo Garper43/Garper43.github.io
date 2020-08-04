@@ -121,26 +121,38 @@ function data_collection() {
 	}
 }
 
+// randomizer controlls
+
+function randomize() {
+	if( current_tile + 1 >= tile.length ) { 
+		tile[current_tile].style.boxShadow = 'none';
+		current_tile = -1;
+	}
+	if( current_tile > -1 ) { tile[current_tile].style.boxShadow = 'none' }
+	current_tile++;	
+	tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 5px white';		
+	}
+
+//pc randomizer controlls
+
 document.addEventListener( 'keydown', function(ev) {
 	if( ev.key == 'Enter' && ev.target.getAttribute('id') == 'number_input' ) { tile_number_change() }
 	else if( ev.key == 'Enter' ) {
-			if( current_tile > -1 ) { tile[current_tile].style.boxShadow = 'none' }
-			current_tile++;	
-			tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 5px white';		
+		randomize();
 	}
 } )
 
+//mobile randomizer controlls
+
 document.addEventListener( 'touchend', function(ev) {
 	if( ev.target.getAttribute('id') != 'number_input' && ev.target.parentNode.className != 'input') {
-		if( current_tile > -1 ) { tile[current_tile].style.boxShadow = 'none' }
-		current_tile++;
-		tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 5px white';
+		randomize();
 	}
 })
 
-//mobile menu controlls
+//menu controlls
 
-menu.button.addEventListener( 'touchend', function(ev) {
+function hide_menu() {
 	if( menu.show ) {
 		menu.menu.style.transition = '.2s';
 		menu.menu.style.height = '20px';
@@ -149,35 +161,39 @@ menu.button.addEventListener( 'touchend', function(ev) {
 		menu.show = false;
 		tile_wrapper.focus();
 		menu.button.textContent = 'RANDOMIZE';
+		menu.button.style.transform = 'rotate(-90deg)';
+		menu.button.style.bottom = window.innerHeight - menu.button.offsetWidth + 'px';
+		menu.button.style.right = (window.innerWidth/2)*-1 + 65*2 + 'px';
 	} else {
 		tile_mix()
 	}
-} )
+}
 
-menu.slider.addEventListener( 'touchend' , function(ev) {
+function show_menu() {
 	menu.show = true;
 	menu.menu.style.height = '100vh';
 	menu.button.textContent = 'GO';
+	menu.button.style.transform = 'rotate(0deg)';
+	menu.button.style.bottom = '3vh';
+	menu.button.style.right = (window.innerWidth - menu.button.offsetWidth)/2 + 'px';
+}
+
+//mobile menu controlls
+
+menu.button.addEventListener( 'touchend', function(ev) {
+	hide_menu()
+} )
+
+menu.slider.addEventListener( 'touchend' , function(ev) {
+	show_menu()
 } )
 
 //pc menu controlls
 
 menu.button.addEventListener( 'click', function(ev) {
-	if( menu.show ) {
-		menu.menu.style.transition = '.2s';
-		menu.menu.style.height = '20px';
-		data_collection()
-		tile_mix()
-		menu.show = false;
-		tile_wrapper.focus();
-		menu.button.textContent = 'RANDOMIZE';
-	} else {
-		tile_mix()
-	}
+	hide_menu()
 } )
 
 menu.slider.addEventListener( 'click' , function(ev) {
-	menu.show = true;
-	menu.menu.style.height = '100vh';
-	menu.button.textContent = 'GO';
+	show_menu()
 } )
