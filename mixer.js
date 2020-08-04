@@ -131,7 +131,7 @@ function randomize() {
 	if( current_tile > -1 ) { tile[current_tile].style.boxShadow = 'none' }
 	current_tile++;	
 	tile[current_tile].style.boxShadow = 'inset 0px 0px 20vw 5px white';		
-	}
+}
 
 //pc randomizer controlls
 
@@ -164,6 +164,7 @@ function hide_menu() {
 		menu.button.style.transform = 'rotate(-90deg)';
 		menu.button.style.bottom = window.innerHeight - menu.button.offsetWidth + 'px';
 		menu.button.style.right = (window.innerWidth/2)*-1 + 65*2 + 'px';
+		menu.slider.style.opacity = 1;
 	} else {
 		tile_mix()
 	}
@@ -176,6 +177,7 @@ function show_menu() {
 	menu.button.style.transform = 'rotate(0deg)';
 	menu.button.style.bottom = '3vh';
 	menu.button.style.right = (window.innerWidth - menu.button.offsetWidth)/2 + 'px';
+	menu.slider.style.opacity = 0;
 }
 
 //mobile menu controlls
