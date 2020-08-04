@@ -155,29 +155,35 @@ document.addEventListener( 'touchend', function(ev) {
 function hide_menu() {
 	if( menu.show ) {
 		menu.menu.style.transition = '.2s';
-		menu.menu.style.height = '20px';
+		menu.menu.style.height = '40px';
 		data_collection()
 		tile_mix()
 		menu.show = false;
 		tile_wrapper.focus();
 		menu.button.textContent = 'RANDOMIZE';
 		menu.button.style.transform = 'rotate(-90deg)';
-		menu.button.style.bottom = window.innerHeight - menu.button.offsetWidth + 'px';
-		menu.button.style.right = (window.innerWidth/2)*-1 + 65*2 + 'px';
-		menu.slider.style.opacity = 1;
+		menu.button.style.bottom = (window.innerHeight)/2 + 'px';
+		menu.button.style.right = '-250px';
+		menu.button.style.width = '50vh'
+		menu.button.style.width = '50vh'
+		setTimeout( function() {menu.menu.childNodes[1].style.opacity = 0;} , 200 );
 	} else {
 		tile_mix()
 	}
 }
 
 function show_menu() {
-	menu.show = true;
-	menu.menu.style.height = '100vh';
-	menu.button.textContent = 'GO';
-	menu.button.style.transform = 'rotate(0deg)';
-	menu.button.style.bottom = '3vh';
-	menu.button.style.right = (window.innerWidth - menu.button.offsetWidth)/2 + 'px';
-	menu.slider.style.opacity = 0;
+	if( menu.show == false ) {
+		menu.show = true;
+		menu.menu.style.height = '100vh';
+		menu.button.textContent = 'GO';
+		menu.button.style.transform = 'rotate(0deg)';
+		menu.button.style.bottom = '3vh';
+		menu.button.style.right = (window.innerWidth - menu.button.offsetWidth)/2 + 'px';
+		menu.slider.style.opacity = 0;
+		menu.menu.childNodes[1].style.opacity = 1;
+	}
+	
 }
 
 //mobile menu controlls
