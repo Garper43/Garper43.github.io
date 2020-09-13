@@ -1,262 +1,109 @@
-body, html {
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
 	margin: 0px;
-	overflow: hidden;
-	background-color: #F0F2EF;
-	height: 100vh;
-	overflow: hidden;
-}
-
-* {
-	font-family: sans-serif;
-}
-
-*:focus {
-	outline: none;
-	border: none;
-}
-
-#tile_wrapper {
-	width: 100vw;
-	height: 100vh;
 	display: flex;
 	justify-content: center;
-	align-items: stretch;
+	background-image: url(img/wood.jpg);
+	background-size: 20%;
+}
+
+#gallery {
+	width: auto;
+	height: 100%;
+	width: calc(100% - 400px);
+	perspective: 100px;
+	display: flex;
+	justify-content: space-between;
 	flex-wrap: wrap;
-	overflow-y: auto;
-}
-
-	.tile {
-		width: 100%;
-		text-align: center;
-		border-top: 2px solid black;
-		border-bottom: 2px solid black;
-		display: flex;
-		align-items: center;
-		background-color: white;
-		position: relative;
-	}
-
-		.tile p {
-			position: absolute;
-			font-size: 50px;
-			text-align: center;
-			width: 100%;
-			color: #eeeeee;
-			text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.466);
-		}
-
-#input_box_wrapper {
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
-	position: absolute;
-	bottom: 0px;
-}
-
-	#input_box_wrapper button {
-		width: 80vw;
-		height: 65px;
-		font-size: 40px;
-		padding: 10px;
-		background-image: linear-gradient( 90deg ,#04D204, #8DF02C );
-		border-radius: 150px;
-		border: none;
-		color: white;
-		box-shadow: 0px 0px 30px 0px #04D20485;
-		z-index: 999999;
-		position: fixed;
-		bottom: 3vh;
-		transition: 0.2s;
-		right: 10vw;
-	}
-
-	#input_box {
-		width: 100vw;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		border-left: 2px solid black;
-		box-shadow: 0px 0px 60px 0px #0000007a;
-		background-image: linear-gradient( 30deg ,#0e0e0e, #2a2633 );
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		padding: 0px 0px 0px 0px;
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
-
-		#input_slider {
-			position: absolute;
-			top: 0px;
-			width: 100vw;
-			height: 40px;
-			background-color: rgb(15, 15, 15);
-			z-index: 9999999999999;
-			opacity: 0;
-		}
-
-		#number_input {
-			text-align: center;
-			height: 35px;
-			font-size: 45px;
-			border-radius: 5px;
-			margin-bottom: 20px;
-			margin-top: 800px;
-			border: 2px solid black;
-			padding: 5px;
-			width: 50%;
-		}
-
-		#tile_input {
-			display: flex;
-			flex-flow: column;
-			width: 100%;
-			justify-content: center;
-			padding: 0px 0px 40px 0px;
-			position: absolute;
-			top: 140px;
-		}
-
-			.input {
-				display: flex;
-				width: 100%;
-				justify-content: center;
-				padding: 5px;
-			}
-
-			.tile_input {
-				margin-left: 20px;
-				text-align: center;
-				font-size: 40px;
-				border-radius: 20px;
-				width: 30vw;
-				border: 0px solid black;
-				padding: 5px;
-			}
-
-			.tile_name {
-				text-align: center;
-				font-size: 40px;
-				border-radius: 20px;
-				width: 30vw;
-				border: none;
-				padding: 5px;
-			}
-
-			.preview {
-				font-size: 30px;
-				padding: 5px;
-				width: 45px;
-				margin-right: 20px;
-				background-color: white;
-				border-radius: 5px;
-				border: 2px solid white;
-			}
-
-#color_picker_wrapper {
-	width: 100vw;
-	height: 100vh;
-	backdrop-filter: blur(2px);
-	background-color: #00000079;
-	z-index: 9999999999999999999999999999999999999999;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	display: none;
+	align-content: flex-start;
 	justify-content: center;
-	align-items: flex-end;
+	padding-bottom: 500px;
 }
 
-	#color_picker {
-		width: 70vw;
-		background-color: #FFFFFF;
-		border: 0px solid white;
-		position: absolute;
-		top: 100px;
-		box-shadow: 0px 0px 40px 0px #0000007a;
-		border-radius: 20px;
-		z-index: 99999999;
-		overflow: hidden;
-	}
-		
-		#color_picker_preview {
-			width: 100%;
-			height: 50vh;
-			border-radius: 20px 20px 0px 0px;
-		}	
+.Oimg {
+	height: 200px;
+	width: max-content;
+	margin: 70px 20px 30px 220px;
+	transition: .1s;
+	float: left;
+	transform: translateX(-200px);
+}
 
-		#sliders {
-			width: calc(100% - 40px);
-			padding: 20px 20px 40px 20px;
-		}
+.img {
+	background-color: white;
+	padding: 15px 10px 0px 10px;
+	width: min-content;
+	height: auto;
+	display: block;
+	position: absolute;
+	border-radius: 3px;
+	border: 0px solid #CDCDCD;
+	box-shadow: 0px 0px 20px 0px #000000c4;
+	float: left;
+}
 
-			#sliders button {
-				width: 80%;
-				font-size: 50px;
-				background-image: linear-gradient( 90deg ,#04D204, #8DF02C );
-				border-radius: 15px;
-				margin-left: 10%;
-				border: none;
-				color: white;
-				transition: .5s;
-				margin-top: 20px;
-			}
+.img textarea {
+	height: 30px;
+	padding: 10px;
+	text-align: center;
+	overflow: hidden;
+	width: calc(100% - 20px);
+	border: none;
+	resize: none;
+	font-weight: bold;
+	font-size: 15px;
+}
 
-			#sliders button:hover {
-				transition: .2s;
-				box-shadow: 0px 0px 20px 0px #04D20485;
-			}
+.img img {
+	background-color: #121212;
+	height: 200px;
+	display: block;
+	transition: .1s;
+	border-radius: 3px;
+}
 
-			#sliders button:active {
-				transition: 0s;
-				border-radius: 40px;
-			}
+.placeholder {
+	background-color: #121212;
+	height: 200px;
+	width: 200px;
+	display: block;
+	transition: .1s;
+	border-radius: 3px;
+}
 
-			#sliders p {
-				width: 100%;
-				text-align: center;
-				color: #666666;
-				font-size: 20px;
-				letter-spacing: 2px;
-				font-weight: bold;
-			}
+.Oimg:hover {
+	z-index: 99999;
+	transition: .3s;
+	transition-delay: .0s;
+	transform: translate3d(-300px, -60px, 0px);
+}
 
-					.rgb_slider {
-					  -webkit-appearance: none;
-					  width: 100%;
-					  height: 10px;
-					  border-radius: 5px;
-					  background: #d3d3d3;
-					  outline: none;
-					  opacity: 0.8;
-					  -webkit-transition: .2s;
-					  transition: opacity .2s;
-					}
+.Oimg:hover .placeholder {
+	transition: .3s;
+	transition-delay: .00s;
+	height: 400px;
+	width: 400px;
+}
 
-					.rgb_slider:hover {
-					  opacity: 1;
-					}
+.Oimg:hover img {
+	transition: .3s;
+	transition-delay: .0s;
+	height: 400px;
+}
 
-					.rgb_slider::-webkit-slider-thumb {
-					  -webkit-appearance: none;
-					  appearance: none;
-					  width: 15px;
-					  height: 15px;
-					  border-radius: 50%;
-					  background: #4CAF50;
-					  cursor: pointer;
-					}
-
-					.rgb_slider::-moz-range-thumb {
-					  width: 15px;
-					  height: 15px;
-					  border-radius: 50%;
-					  background: #4CAF50;
-					  border: none;
-					  cursor: pointer;
-					}
-
-
-
+#password {
+	position: fixed;
+	z-index: 999999999999999999999;
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
